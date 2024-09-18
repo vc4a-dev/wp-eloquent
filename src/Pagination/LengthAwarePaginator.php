@@ -137,11 +137,13 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
      *
      * @return string|null
      */
-    public function nextPageUrl()
+    public function nextPageUrl(): ?string
     {
         if ($this->lastPage() > $this->currentPage()) {
             return $this->url($this->currentPage() + 1);
         }
+
+        return null;
     }
 
     /**

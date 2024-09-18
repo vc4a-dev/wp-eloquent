@@ -2,6 +2,7 @@
 
 namespace As247\WpEloquent\Pagination;
 
+use As247\WpEloquent\Contracts\View\Factory;
 use Closure;
 use As247\WpEloquent\Contracts\Support\Htmlable;
 use As247\WpEloquent\Support\Arr;
@@ -130,11 +131,13 @@ abstract class AbstractPaginator implements Htmlable
      *
      * @return string|null
      */
-    public function previousPageUrl()
+    public function previousPageUrl(): ?string
     {
         if ($this->currentPage() > 1) {
             return $this->url($this->currentPage() - 1);
         }
+
+        return null;
     }
 
     /**
@@ -144,7 +147,7 @@ abstract class AbstractPaginator implements Htmlable
      * @param  int  $end
      * @return array
      */
-    public function getUrlRange($start, $end)
+    public function getUrlRange(int $start, int $end): array
     {
         return collect(range($start, $end))->mapWithKeys(function ($page) {
             return [$page => $this->url($page)];
@@ -467,9 +470,9 @@ abstract class AbstractPaginator implements Htmlable
     /**
      * Get an instance of the view factory from the resolver.
      *
-     * @return \As247\WpEloquent\Contracts\View\Factory
+     * @return Factory
      */
-    public static function viewFactory()
+    public static function viewFactory(): Factory
     {
         return call_user_func(static::$viewFactoryResolver);
     }

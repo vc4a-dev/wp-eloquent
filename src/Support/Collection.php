@@ -106,9 +106,7 @@ class Collection implements ArrayAccess, Enumerable
 
         $count = $values->count();
 
-        if ($count === 0) {
-            return;
-        }
+        if ($count === 0) return;
 
         $middle = (int) ($count / 2);
 
@@ -125,13 +123,11 @@ class Collection implements ArrayAccess, Enumerable
      * Get the mode of a given key.
      *
      * @param  string|array|null  $key
-     * @return array|null
+     * @return array|void
      */
     public function mode($key = null)
     {
-        if ($this->count() === 0) {
-            return;
-        }
+        if ($this->count() === 0) return;
 
         $collection = isset($key) ? $this->pluck($key) : $this;
 
@@ -424,7 +420,7 @@ class Collection implements ArrayAccess, Enumerable
      *
      * @param  array|callable|string  $groupBy
      * @param  bool  $preserveKeys
-     * @return static
+     * @return Collection|HigherOrderCollectionProxy
      */
     public function groupBy($groupBy, $preserveKeys = false)
     {
