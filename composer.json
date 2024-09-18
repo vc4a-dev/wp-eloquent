@@ -17,6 +17,9 @@
     "ext-pdo": "*",
     "ext-mbstring": "*"
   },
+  "require-dev": {
+    "symfony/var-dumper": "^7.1"
+  },
   "suggest": {
     "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
     "fzaninotto/faker": "Required to use the eloquent factory builder (^1.9.1).",
